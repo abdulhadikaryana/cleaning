@@ -79,4 +79,18 @@
 			
 			return $query->num_rows();
 		}
+		public function getduplikat(){
+			$query = $this->db->query("SELECT distinct a.IdCatatPrim, a.TahunCatat,a.DomainCatat,a.CategoryCatat, a.NamePrim, a.Ocupation, a.Kota, a.OPK, a.Identification 
+				FROM pencatatanprimary a INNER JOIN pencatatanprimary b ON a.NamePrim = b.NamePrim 
+				WHERE a.IdCatatPrim <> b.IdCatatPrim ORDER by NamePrim ASC");
+			 
+			if ($query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+			$data[] = $row;
+			}
+
+			return $data;
+			}
+			return false;
+		}
 	}

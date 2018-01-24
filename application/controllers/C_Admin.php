@@ -73,6 +73,14 @@
 			
 		}
 
+		public function duplikat(){
+			$data['duplikat']=$this->M_Admin->getduplikat();
+			$data['count']= count($data['duplikat']);
+			$this->load->view('navigation');
+			$this->load->view('v_duplikat', $data);
+		}
+
+		
 		public function detail(){
 			$id=$this->uri->segment(3);
 			$page = $this->uri->segment(4);
@@ -101,11 +109,44 @@
 
 		}
 
+		public function detailduplikat(){
+			$id=$this->uri->segment(3);
+			$page = $this->uri->segment(4);
+			$data_objek['objek_detail'] = $this->M_Admin->get_objek_detail($id);
+			foreach ($data_objek['objek_detail'] ->result_array() as $key ) {
+				$data_objek['provinsi'] = $key['Ocupation'];
+				$data_objek['Nama'] = $key['NamePrim'];
+				$data_objek['Deskripsi'] = $key['Identification'];
+				$data_objek['tahun'] = $key['TahunCatat'];
+				$data_objek['domain'] = $key['DomainCatat'];
+				$data_objek['kategori'] = $key['CategoryCatat'];
+				$data_objek['OPK'] = $key['OPK'];
+				$data_objek['kota'] = $key['Kota'];
+				$data_objek['id'] = $key['IdCatatPrim'];
+				 
+			}
+			$data_objek['kosong'] = $this->M_Admin->getkota($data_objek['provinsi']);
+			$breadcrumb = array(
+								   "Home" => "/krocomumet",
+								   "List" => base_url().'C_Admin/duplikat/',   
+								   $data_objek['Nama'] => ""
+								);
+                $data_objek['breadcrumb'] = $breadcrumb;
+ 
+			$this->load->view('detail', $data_objek);
+
+		}
+
 		public function del(){
+			$url = $this->uri->segment(2);
 			$id = $this->uri->segment(3);
 			$page = $this->uri->segment(4);
+			if (is_null($page)) {
+				$page = '';
+			} 
+			
 			$this->M_Admin->softdelete($id);
-			redirect(base_url().'C_Admin/admin/'.$page,'refresh');
+			redirect(base_url().'C_Admin/'.$url.'/'.$page,'refresh');
 		}
 
 		public function edit(){
@@ -184,8 +225,6 @@
 			$this->load->view('v_rekap', $data);
 		}
 
-		
 
-		
 
 	}

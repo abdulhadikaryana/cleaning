@@ -24,20 +24,20 @@
                 </div>
                 
             </div>
-            <div class = "row">
+            <!-- <div class = "row">
                 <form>
-                    <!--  <div class="col-xs-4 form-group">
+                     <div class="col-xs-4 form-group">
                         <input type="text" name="keyword" class="form-control">
-                    </div> -->
-                    <!-- <div class="col-xs-4 form-group">
+                    </div>
+                    <div class="col-xs-4 form-group">
                         <label>Kategori Search<br></label>
                         <select class="form-control" name="kategori">
                             <option value="provinsi">Provinsi</option>
                             <option value="name">Nama</option>
                         </select>
-                    </div> -->
+                    </div>
                 </form> 
-            </div>
+            </div> -->
             
             <!-- /.row -->
             <div class="row">
@@ -56,15 +56,13 @@
                                 <th>#</th>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <!-- <th><a href="?orderby=post_title&order=<?php echo $postTitleNextOrder; ?>" class="column-title">Provinsi</th> -->
-                                <!-- <th><a href="<?php echo base_url().'C_Admin/sort/'.$order; ?>">Provinsi</a></th> -->
                                 <th>Provinsi</th>
                                 <th>Kota</th>
                                 <th>OPK</th>
                                 <th>Action</th>
                                 
                             </tr>
-                            <?php $nom=($page-1) * 20;foreach ($objek as $row) {
+                            <?php $nom=1;foreach ($duplikat as $row) {
                                 $nom++;
                                 //$email = $row->email;
                                 ?><tr>
@@ -93,18 +91,14 @@
                                         ?>
                                     </td>
                                     <td> 
-                                        <a href="<?php echo base_url().'C_Admin/detail/'.$row->IdCatatPrim.'/'.$page;?>"><i class="fa fa-eye fa-fw"></i></a>
-                                        <a href="<?php echo base_url().'C_Admin/del/'.$row->IdCatatPrim.'/'.$page;?>"><i class="fa fa-remove fa-fw"></i> </a>
+                                        <a href="<?php echo base_url().'C_Admin/detailduplikat/'.$row->IdCatatPrim;?>"><i class="fa fa-eye fa-fw"></i></a>
+                                        <a href="<?php echo base_url().'C_Admin/del/'.$row->IdCatatPrim;?>"><i class="fa fa-remove fa-fw"></i> </a>
                                     </td>
                                     
                                 </tr><?php
                             }?>
                             </table>
-                            <div class="pagination pagination-sm">
-                                <?php foreach ($links as $link) {
-                                echo "<li class >". $link."</li>";
-                                } ?>
-                            </div>
+                            
                             </table>
                         </div>
                         <!-- /.panel-body -->
@@ -139,11 +133,7 @@
 
     <!-- Custom Theme JavaScript -->
     
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#table_data').DataTable();
-        } );
-    </script>
+   
     <script src="<?php echo HTTP_VENDOR_PATH;?>jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

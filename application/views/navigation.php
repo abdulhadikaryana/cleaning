@@ -75,7 +75,7 @@
                             <a href="<?php echo base_url().'C_Admin/rekap';?>"><i class="fa fa-book fa-fw"></i> Rekap</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url().'C_Admin/region';?>"><i class="fa fa-clipboard fa-fw"></i> Duplikat</a>
+                            <a href="<?php echo base_url().'C_Admin/duplikat';?>"><i class="fa fa-clipboard fa-fw"></i> Duplikat</a>
                         </li>
                     </ul>
 
