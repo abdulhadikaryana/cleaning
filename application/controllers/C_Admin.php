@@ -25,15 +25,15 @@
 		}
 		public function admin(){
 					
-				if (empty($this->input->post("columnName"))) {
-					$order_db = "ASC";
-					$orderby = "IdCatatPrim";
-				} else {
-					$order_db = $this->input->post("sort");
-					$orderby = $this->input->post("columnName");
-				}
+				// if (empty($this->input->post("columnName"))) {
+				// 	$order_db = "ASC";
+				// 	$orderby = "IdCatatPrim";
+				// } else {
+				// 	$order_db = $this->input->post("sort");
+				// 	$orderby = $this->input->post("columnName");
+				// }
 				
-				$data['order']= $order_db;
+				// $data['order']= $order_db;
 				$data['count']=$this->getcount();
 				$config = array();
 				$config["base_url"] = base_url() . "C_Admin/admin";
@@ -58,7 +58,7 @@
 				// }
 				$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         		$offset = $page == 0 ? 0 : ($page - 1) * $config["per_page"];
-				$data['objek'] = $this->M_Admin->getallpeserta($config["per_page"], $offset,$order_db,$orderby);
+				$data['objek'] = $this->M_Admin->getallpeserta($config["per_page"], $offset);
 				// echo $this->session->userdata('orderby');
 				// echo self::$order_element;
 				

@@ -29,13 +29,13 @@
                      <div class="col-xs-4 form-group">
                         <input type="text" name="keyword" class="form-control">
                     </div>
-                    <div class="col-xs-4 form-group">
+                    <!-- <div class="col-xs-4 form-group">
                         <label>Kategori Search<br></label>
                         <select class="form-control" name="kategori">
                             <option value="provinsi">Provinsi</option>
                             <option value="name">Nama</option>
                         </select>
-                    </div>
+                    </div> -->
                 </form> 
             </div>
             
@@ -58,7 +58,7 @@
                                 <th>Nama</th>
                                 <!-- <th><a href="?orderby=post_title&order=<?php echo $postTitleNextOrder; ?>" class="column-title">Provinsi</th> -->
                                 <!-- <th><a href="<?php echo base_url().'C_Admin/sort/'.$order; ?>">Provinsi</a></th> -->
-                                <th><span onclick='sortTable("IdCatatPrim");'>ID</span></th>
+                                <th>Provinsi</th>
                                 <th>Kota</th>
                                 <th>OPK</th>
                                 <th>Action</th>

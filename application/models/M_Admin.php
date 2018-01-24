@@ -12,7 +12,7 @@
 		}
 
 		// Fetch data according to per_page limit.
-		public function getallpeserta($limit, $id,$order,$orderby) {
+		public function getallpeserta($limit, $id) {
 			// $this->db->limit($limit);
 			//$this->db->where('id', $id);
 			// $query = $this->db->get("peserta");
