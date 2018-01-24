@@ -110,7 +110,7 @@
                                             <div class="col-lg-6" style="text-align:left">
                                             <label class="label label-info">Kota   :</label><br>       
                                                 <?php 
-                                                    if (is_null($kota)) {
+                                                    if (is_null($kota) or $kota=='') {
                                                         ?>
                                                         <?php
                                                             foreach ($kosong ->result_array() as $key ) {
@@ -127,7 +127,7 @@
                                         <div class="col-lg-6 text-left">
                                             <label class="label label-info">Kategori OPK</label><br>
                                             <?php
-                                                if (is_null($OPK)) {
+                                                if (is_null($OPK) or $OPK=='') {
                                                     ?>
                                                     <label><input type="checkbox" name="OPK[]" value="tradisi lisan">tradisi lisan</label><br>
                                                     <label><input type="checkbox" name="OPK[]" value="manuskrip">manuskrip</label><br>
