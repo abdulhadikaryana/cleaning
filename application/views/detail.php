@@ -55,6 +55,20 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            <div class="row">
+                <ul class="breadcrumb">
+             <?php
+             foreach ($breadcrumb as $key=>$value) {
+              if($value!=''){
+             ?>
+                 <li><a href="<?=$value; ?>"><?=$key; ?></a> <span class="divider">></span></li>
+                 <?php }else{?>
+                 <li class="active"><?=$key; ?></li>
+                 <?php }
+             }
+             ?>     
+                </ul>
+            </div>
             <!-- /.row -->
             
             <div class="row" >
@@ -81,47 +95,64 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="row">
-                                <div class="panel panel-default text-center">
-                                    <!-- panel untuk foto karya -->
-                                     <div class="panel-heading">
-                                        <strong>Kota dan OPK</strong>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="col-lg-6" style="text-align:left">
-                                        <label class="label label-info">Kota   :</label><br>       
-                                            <?php 
-                                                if (is_null($kota)) {
-                                                    ?>
-                                                    <?php
-                                                        foreach ($kosong ->result_array() as $key ) {
-                                                            ?><input class="wrap form-group" type="checkbox" name="kota[]" value="<?php echo $key['WILAYAH'];?>"><?php echo $key['WILAYAH'];?><br><?php
-                                                        }
+                            <form id="edit" name="edit" action="<?=site_url('C_Admin/edit'); ?>" method="post">
+                                <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
+                                <div class="row form-group">
+                                    <textarea class="form-control resizable" rows="7"  name="deskripsi" form="edit"><?php echo $Deskripsi;?></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="panel panel-default text-center">
+                                        <!-- panel untuk foto karya -->
+                                         <div class="panel-heading">
+                                            <strong>Kota dan OPK</strong>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-lg-6" style="text-align:left">
+                                            <label class="label label-info">Kota   :</label><br>       
+                                                <?php 
+                                                    if (is_null($kota)) {
                                                         ?>
                                                         <?php
-                                                } else {
-                                                     echo $kota;
-                                                }
-                                                ?>
-                                                 <br>
-                                    </div>
-                                    <div class="col-lg-6 text-left">
-                                        <label class="label label-info">Kategori OPK</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="tradisi lisan">tradisi lisan</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="manuskrip">manuskrip</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="adat istiadat">adat istiadat</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="ritus">ritus</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="pengetahuan tradisional">pengetahuan tradisional</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="teknologi  tradisional">teknologi  tradisional</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="seni">Seni</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="bahasa">Bahasa</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="permainan rakyat">Permainan Rakyat</label><br>
-                                        <label><input type="checkbox" name="OPK[]" value="olahraga tradisional">Olahraga Tradisional</label><br>
-                                    </div>
+                                                            foreach ($kosong ->result_array() as $key ) {
+                                                                ?><input class="wrap form-group" type="checkbox" name="kota[]" value="<?php echo $key['WILAYAH'];?>"><?php echo $key['WILAYAH'];?><br><?php
+                                                            }
+                                                            ?>
+                                                            <?php
+                                                    } else {
+                                                         echo $kota;
+                                                    }
+                                                    ?>
+                                                     <br>
+                                        </div>
+                                        <div class="col-lg-6 text-left">
+                                            <label class="label label-info">Kategori OPK</label><br>
+                                            <?php
+                                                if (is_null($OPK)) {
+                                                    ?>
+                                                    <label><input type="checkbox" name="OPK[]" value="tradisi lisan">tradisi lisan</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="manuskrip">manuskrip</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="adat istiadat">adat istiadat</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="ritus">ritus</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="pengetahuan tradisional">pengetahuan tradisional</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="teknologi  tradisional">teknologi  tradisional</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="seni">Seni</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="bahasa">Bahasa</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="permainan rakyat">Permainan Rakyat</label><br>
+                                                    <label><input type="checkbox" name="OPK[]" value="olahraga tradisional">Olahraga Tradisional</label><br><?php
+                                                 } else {
+                                                    echo $OPK;
+                                                 }
+                                                  
+                                            ?>
+                                            
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row form-group text-center">
+                                    <button type="submit" name ="submit" value="submit" class="portfolio-link btn btn-success btn-default">Edit</button>
+                                </div>
+                            </form>
                             
                         </div>
                         <!-- /.panel-body -->

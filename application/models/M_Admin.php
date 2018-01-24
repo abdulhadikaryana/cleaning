@@ -16,7 +16,7 @@
 			// $this->db->limit($limit);
 			//$this->db->where('id', $id);
 			// $query = $this->db->get("peserta");
-			$query=$this->db->query("SELECT * FROM pencatatanprimary where DelCatatPrim = 'accepted' ORDER BY ".$orderby." ". $order." limit $id,$limit ");
+			$query=$this->db->query("SELECT * FROM pencatatanprimary where DelCatatPrim = 'accepted' ORDER BY Ocupation ASC limit $id,$limit ");
 			
 			if ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
@@ -39,88 +39,12 @@
 			return $kota;
 		}
 		
-
-		public function getstatusprofpict($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from konten where email = '$email' and JENIS = 'profpict')");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from konten where email = '$email' and JENIS = 'profpict')"];
-			}
+		public function edit($id,$opk_edit,$deskripsi,$kota_edit){
+			$query = $this->db->query("UPDATE pencatatanprimary set OPK = '$opk_edit', Kota = '$kota_edit', Identification = '$deskripsi' where IdCatatPrim='$id'");
 		}
 
-		public function getstatussks($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from konten where email = '$email' and JENIS = 'sks')");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from konten where email = '$email' and JENIS = 'sks')"];
-			}
-		}
-
-		public function getstatussr($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from konten where email = '$email' and JENIS = 'sr')");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from konten where email = '$email' and JENIS = 'sr')"];
-			}
-		}
-
-		public function getstatusdrh($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from konten where email = '$email' and JENIS = 'drh')");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from konten where email = '$email' and JENIS = 'drh')"];
-			}
-		}
-
-		public function getstatusfk($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from foto where email = '$email' )");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from foto where email = '$email' )"];
-			}
-		}
-
-		public function getstatusktp($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from konten where email = '$email' and JENIS = 'ktp')");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from konten where email = '$email' and JENIS = 'ktp')"];
-			}
-		}
-
-		public function getstatusessai($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from konten where email = '$email' and JENIS = 'essai')");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from konten where email = '$email' and JENIS = 'essai')"];
-			}
-		}
-
-		public function getstatusvideo($email){
-			$query = $this->db->query("SELECT EXISTS (SELECT email from video where email = '$email' )");
-			foreach ($query->result_array() as $key ) {
-				return $key["EXISTS (SELECT email from video where email = '$email' )"];
-			}
-		}
-
-		public function getcountbyregion(){
-			$region=$this->db->query("SELECT region,COUNT(region) FROM peserta GROUP BY region");
-			return $region;
-		}
-
-		public function getdirbyregion($regions){
-			$region = $this->db->query("SELECT distinct region from peserta where region like '%$regions%'");
-			return $region;
-			$this->db->save_queries = false;
-		}
-
-		public function getdirdownloadbyregion($regiondir){
-			$name = $this->db->query("SELECT nama_seniman from peserta where region = '$regiondir'");
-			return $name;
-			$this->db->save_queries = false;
-		}
-
-		public function getdirdownload($email){
-			$query=$this->db->query("SELECT nama_seniman FROM peserta WHERE email = '$email'");
-			return $query;
-		}
-
-		public function getdirdownloadall(){
-			$query=$this->db->query("SELECT nama_seniman FROM peserta ");
-			return $query;
+		public function softdelete($id){
+			$query = $this->db->query("UPDATE pencatatanprimary set DelCatatPrim='deleted' where IdCatatPrim='$id'");
 		}
 
 		public function searchpeserta($nama){
@@ -133,5 +57,26 @@
 			return $data;
 			}
 			return NULL;
+		}
+
+		public function gettotalfull(){
+			$query = $this->db->query(" SELECT COUNT(IdCatatPrim) from pencatatanprimary where Kota IS NOT NULL AND OPK IS NOT NULL");
+			
+			return $query;
+		}
+		public function gettotalkota(){
+			$query = $this->db->query(" SELECT COUNT(IdCatatPrim) from pencatatanprimary where Kota IS NOT NULL ");
+			
+			return $query;
+		}
+		public function gettotalopk(){
+			$query = $this->db->query(" SELECT COUNT(IdCatatPrim) from pencatatanprimary where OPK IS NOT NULL ");
+			
+			return $query;
+		}
+		public function getcountduplikat(){
+			$query = $this->db->query(" SELECT NamePrim FROM pencatatanprimary GROUP BY NamePrim HAVING COUNT(NamePrim) >1 ");
+			
+			return $query->num_rows();
 		}
 	}

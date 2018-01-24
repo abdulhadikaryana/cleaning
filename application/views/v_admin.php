@@ -50,13 +50,15 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body table-responsive">
-                            <table class="table ">
+                            <input type='hidden' id='sort' value='asc'>
+                            <table class="table" id="table_data">
                             <tr>
                                 <th>#</th>
                                 <th>ID</th>
                                 <th>Nama</th>
                                 <!-- <th><a href="?orderby=post_title&order=<?php echo $postTitleNextOrder; ?>" class="column-title">Provinsi</th> -->
-                                <th><a href="<?php echo base_url().'C_Admin/sort/'.$order.'/orderby' ?>">Provinsi</a></th>
+                                <!-- <th><a href="<?php echo base_url().'C_Admin/sort/'.$order; ?>">Provinsi</a></th> -->
+                                <th><span onclick='sortTable("IdCatatPrim");'>ID</span></th>
                                 <th>Kota</th>
                                 <th>OPK</th>
                                 <th>Action</th>
@@ -103,6 +105,7 @@
                                 echo "<li class >". $link."</li>";
                                 } ?>
                             </div>
+                            </table>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -121,50 +124,9 @@
 
     <!-- jQuery -->
     <!-- Modal -->
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="image-gallery-title"></h4>
-            </div>
-            <div class="modal-body text-center">
-                <img class="img-responsive" src="#"/>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<script type="text/javascript">
-    $('.image-floating').click(function(e){
-        $('#myModal img').attr('src', $(this).attr('data-img-url'));
-    });
 
-    $('.changestatus').click(function(e){
-        e.preventDefault();
-        var caper_id = $(this).data('id');
-        $.ajax({
-            type: 'POST',
-            url: '/calonpeserta/status',
-            data: {caper_id: caper_id},
-            success: function(response) {
-                // alert(response);
-                if(response == 'success') {
-                    location.reload();
-                } else {
-                    alert('Ada masalah di server');
-                }
-            }
-        });
-    });
 
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
 
     <!-- Bootstrap Core JavaScript -->
     
@@ -177,7 +139,11 @@
 
     <!-- Custom Theme JavaScript -->
     
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table_data').DataTable();
+        } );
+    </script>
     <script src="<?php echo HTTP_VENDOR_PATH;?>jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -188,6 +154,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo HTTP_JS_PATH; ?>sb-admin-2.js"></script>
+    <script src='<?php echo HTTP_JS_PATH; ?>jquery-1.12.0.min.js' type='text/javascript'></script>
+    <script src='<?php echo HTTP_JS_PATH; ?>script.js' type='text/javascript'></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
 
 </body>
 
