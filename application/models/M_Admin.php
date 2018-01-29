@@ -40,7 +40,7 @@
 		}
 		
 		public function edit($id,$opk_edit,$deskripsi,$kota_edit){
-			$query = $this->db->query("UPDATE pencatatanprimary set OPK = '$opk_edit', Kota = '$kota_edit', Deskripsi = '$deskripsi' where IdCatatPrim='$id'");
+			$query = $this->db->query("UPDATE pencatatanprimary set OPK = '$opk_edit', Kota = '$kota_edit', Deskripsi = '$deskripsi' where ID='$id'");
 		}
 
 		public function softdelete($id){
