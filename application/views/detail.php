@@ -23,6 +23,8 @@
     <!-- Custom Fonts -->
     <link href="<?php echo HTTP_VENDOR_PATH;?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='<?php echo HTTP_JS_PATH; ?>script.js' type='text/javascript'></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -83,11 +85,13 @@
                                     <div class="panel panel-default text-center">
                                         
                                         <div class="panel-body" >
-                                            <div class="row-lg-6">
+                                            <div class="row-lg-6" >
                                                 <div class="col-sm-3"><label class="label label-info">Tahun Pencatatan:</label><br><label><?php echo $tahun;?></label></div>
                                                 <div class="col-sm-3"><label class="label label-info">Domain:</label><br><label ><?php echo $domain;?></label></div>
                                                 <div class="col-sm-3"><label class="label label-info">Kategori:</label><br><label ><?php echo $kategori;?></label></div>
-                                                <div class="col-sm-3"><label class="label label-info">Provinsi:</label><br><label ><?php echo $provinsi;?></label></div>
+                                                <div  id="provinsi_holder" class="col-sm-3"><label    class="label label-info append">Provinsi:</label><br><label id="provinsi_label"><?php echo $provinsi;?></label>
+                                                    <span id="change_provinsi" onclick="change_provinsi();" class="btn btn-xl glyphicon glyphicon-repeat"></span><br>
+                                                </div>
                                             </div>
                                             
                                             
@@ -108,13 +112,17 @@
                                         </div>
                                         <div class="panel-body">
                                             <div class="col-lg-6" style="text-align:left">
-                                            <label class="label label-info">Kota   :</label><br>       
+                                            <label class="label label-info">Kota   :</label><br>
+                                                   
                                                 <?php 
                                                     if (is_null($kota) or $kota=='') {
                                                         ?>
                                                         <?php
                                                             foreach ($kosong ->result_array() as $key ) {
-                                                                ?><input class="wrap form-group" type="checkbox" name="kota[]" value="<?php echo $key['WILAYAH'];?>"><?php echo $key['WILAYAH'];?><br><?php
+                                                                ?><input class="wrap form-group" type="checkbox" name="kota[]" value="<?php echo $key['WILAYAH'];?>"><?php echo $key['WILAYAH'];?><br>
+
+                                                                <?php
+
                                                             }
                                                             ?>
                                                             <?php
@@ -180,6 +188,7 @@
     <script src="<?php echo HTTP_VENDOR_PATH;?>metisMenu/metisMenu.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
+   
     <script src="<?php echo HTTP_JS_PATH; ?>sb-admin-2.js"></script>
     
 

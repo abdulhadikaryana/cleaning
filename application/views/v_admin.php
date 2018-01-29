@@ -56,9 +56,8 @@
                                 <th>#</th>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <!-- <th><a href="?orderby=post_title&order=<?php echo $postTitleNextOrder; ?>" class="column-title">Provinsi</th> -->
-                                <!-- <th><a href="<?php echo base_url().'C_Admin/sort/'.$order; ?>">Provinsi</a></th> -->
-                                <th>Provinsi</th>
+                                
+                               <th>Provinsi</th>
                                 <th>Kota</th>
                                 <th>OPK</th>
                                 <th>Action</th>
@@ -69,9 +68,9 @@
                                 //$email = $row->email;
                                 ?><tr>
                                     <td><?php echo $nom;?></td>
-                                    <td><?php echo $row->IdCatatPrim;?></td>
-                                    <td><?php echo $row->NamePrim;?></td>
-                                    <td><?php echo $row->Ocupation;?></td>
+                                    <td><?php echo $row->ID;?></td>
+                                    <td><?php echo $row->Name;?></td>
+                                    <td><?php echo $row->Provinsi;?></td>
                                     <td>
                                         <?php 
                                             if (is_null( $row->Kota)) {
@@ -93,8 +92,8 @@
                                         ?>
                                     </td>
                                     <td> 
-                                        <a href="<?php echo base_url().'C_Admin/detail/'.$row->IdCatatPrim.'/'.$page;?>"><i class="fa fa-eye fa-fw"></i></a>
-                                        <a href="<?php echo base_url().'C_Admin/del/'.$row->IdCatatPrim.'/'.$page;?>"><i class="fa fa-remove fa-fw"></i> </a>
+                                        <a href="<?php echo base_url().'C_Admin/detail/'.$row->ID.'/'.$page;?>"><i class="fa fa-eye fa-fw"></i></a>
+                                        <a href="<?php echo base_url().'C_Admin/del/'.$row->ID.'/'.$page;?>"><i class="fa fa-remove fa-fw"></i> </a>
                                     </td>
                                     
                                 </tr><?php
@@ -155,8 +154,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo HTTP_JS_PATH; ?>sb-admin-2.js"></script>
     <script src='<?php echo HTTP_JS_PATH; ?>jquery-1.12.0.min.js' type='text/javascript'></script>
-    <script src='<?php echo HTTP_JS_PATH; ?>script.js' type='text/javascript'></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
+    
 
 </body>
 

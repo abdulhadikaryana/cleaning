@@ -67,9 +67,9 @@
                                 //$email = $row->email;
                                 ?><tr>
                                     <td><?php echo $nom;?></td>
-                                    <td><?php echo $row->IdCatatPrim;?></td>
-                                    <td><?php echo $row->NamePrim;?></td>
-                                    <td><?php echo $row->Ocupation;?></td>
+                                    <td><?php echo $row->ID;?></td>
+                                    <td><?php echo $row->Name;?></td>
+                                    <td><?php echo $row->Provinsi;?></td>
                                     <td>
                                         <?php 
                                             if (is_null( $row->Kota)) {
@@ -91,8 +91,8 @@
                                         ?>
                                     </td>
                                     <td> 
-                                        <a href="<?php echo base_url().'C_Admin/detailduplikat/'.$row->IdCatatPrim;?>"><i class="fa fa-eye fa-fw"></i></a>
-                                        <a href="<?php echo base_url().'C_Admin/del/'.$row->IdCatatPrim;?>"><i class="fa fa-remove fa-fw"></i> </a>
+                                        <a href="<?php echo base_url().'C_Admin/detailduplikat/'.$row->ID;?>"><i class="fa fa-eye fa-fw"></i></a>
+                                        <a href="<?php echo base_url().'C_Admin/del/'.$row->ID;?>"><i class="fa fa-remove fa-fw"></i> </a>
                                     </td>
                                     
                                 </tr><?php

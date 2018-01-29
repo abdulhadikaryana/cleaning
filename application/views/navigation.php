@@ -26,6 +26,9 @@
     <link href="<?php echo HTTP_VENDOR_PATH;?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="<?php echo HTTP_VENDOR_PATH;?>morrisjs/morris.css" rel="stylesheet">
+
+    <script src='<?php echo HTTP_JS_PATH; ?>script.js' type='text/javascript'></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -77,6 +80,10 @@
                         <li>
                             <a href="<?php echo base_url().'C_Admin/duplikat';?>"><i class="fa fa-clipboard fa-fw"></i> Duplikat</a>
                         </li>
+                        <li>
+                            <a href="<?php echo base_url().'C_Admin/upload';?>"><i class="fa fa-clipboard fa-fw"></i> Upload</a>
+                        </li>
+                        
                     </ul>
 
                 </div>

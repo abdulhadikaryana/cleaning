@@ -86,15 +86,15 @@
 			$page = $this->uri->segment(4);
 			$data_objek['objek_detail'] = $this->M_Admin->get_objek_detail($id);
 			foreach ($data_objek['objek_detail'] ->result_array() as $key ) {
-				$data_objek['provinsi'] = $key['Ocupation'];
-				$data_objek['Nama'] = $key['NamePrim'];
-				$data_objek['Deskripsi'] = $key['Identification'];
+				$data_objek['provinsi'] = $key['Provinsi'];
+				$data_objek['Nama'] = $key['Name'];
+				$data_objek['Deskripsi'] = $key['Deskripsi'];
 				$data_objek['tahun'] = $key['TahunCatat'];
-				$data_objek['domain'] = $key['DomainCatat'];
+				$data_objek['domain'] = $key['DOMAIN'];
 				$data_objek['kategori'] = $key['CategoryCatat'];
 				$data_objek['OPK'] = $key['OPK'];
 				$data_objek['kota'] = $key['Kota'];
-				$data_objek['id'] = $key['IdCatatPrim'];
+				$data_objek['id'] = $key['ID'];
 				 
 			}
 			$data_objek['kosong'] = $this->M_Admin->getkota($data_objek['provinsi']);
@@ -114,15 +114,15 @@
 			$page = $this->uri->segment(4);
 			$data_objek['objek_detail'] = $this->M_Admin->get_objek_detail($id);
 			foreach ($data_objek['objek_detail'] ->result_array() as $key ) {
-				$data_objek['provinsi'] = $key['Ocupation'];
-				$data_objek['Nama'] = $key['NamePrim'];
-				$data_objek['Deskripsi'] = $key['Identification'];
+				$data_objek['provinsi'] = $key['Provinsi'];
+				$data_objek['Nama'] = $key['Name'];
+				$data_objek['Deskripsi'] = $key['Deskripsi'];
 				$data_objek['tahun'] = $key['TahunCatat'];
-				$data_objek['domain'] = $key['DomainCatat'];
+				$data_objek['domain'] = $key['DOMAIN'];
 				$data_objek['kategori'] = $key['CategoryCatat'];
 				$data_objek['OPK'] = $key['OPK'];
 				$data_objek['kota'] = $key['Kota'];
-				$data_objek['id'] = $key['IdCatatPrim'];
+				$data_objek['id'] = $key['ID'];
 				 
 			}
 			$data_objek['kosong'] = $this->M_Admin->getkota($data_objek['provinsi']);
@@ -147,6 +147,18 @@
 			
 			$this->M_Admin->softdelete($id);
 			redirect(base_url().'C_Admin/'.$url.'/'.$page,'refresh');
+		}
+
+		public function editProvinsi(){
+			$check_kota="<select name="."\"provinsi\"".">";
+			
+			$kota=$this->M_Admin->getProvinsi();
+			foreach ($kota->result_array() as $key) {
+				$check_kota=$check_kota."<option  value=".$key['PROVINSI'].">".$key['PROVINSI']."</option>";
+			}
+			$check_kota=$check_kota."</select>";
+			echo $check_kota;
+			// return $check_kota;
 		}
 
 		public function edit(){
@@ -192,13 +204,10 @@
 			
 		}
 
-		
+
 
 		public function getcount(){
 			$countpeserta = $this->M_Admin->getcountpeserta();
-			// foreach ($countpeserta as $key ) {
-			// 	$count = 
-			// }
 			return $countpeserta;
 		}
 
@@ -207,17 +216,17 @@
 			$data['total'] = $this->getcount();
 			$data['total_full'] = $this->M_Admin->gettotalfull();
 			foreach ($data['total_full'] ->result_array() as $key ) {
-				$data['total_full']=$key['COUNT(IdCatatPrim)'];
+				$data['total_full']=$key['COUNT(ID)'];
 				 
 			}
 			$data['total_kota'] = $this->M_Admin->gettotalkota();
 			foreach ($data['total_kota'] ->result_array() as $key ) {
-				$data['total_kota']=$key['COUNT(IdCatatPrim)']; 
+				$data['total_kota']=$key['COUNT(ID)']; 
 			}
 
 			$data['total_opk'] = $this->M_Admin->gettotalopk();
 			foreach ($data['total_opk'] ->result_array() as $key ) {
-				$data['total_opk']=$key['COUNT(IdCatatPrim)']; 
+				$data['total_opk']=$key['COUNT(ID)']; 
 			}
 			$data['duplikat']= $this->M_Admin->getcountduplikat();
 			
@@ -226,5 +235,89 @@
 		}
 
 
+		function upload(){
+			$this->load->view('navigation');
+			$this->load->view('v_upload');
+		}
+		
+		public function uploadfile(){
+			
+		}
+
+		public function importExcel(){
+			$this->load->library('excel');
+			if ($this->input->post('importfile')) {
+	            $path = ROOT_UPLOAD_IMPORT_PATH;
+	 
+	            $config['upload_path'] = $path;
+	            $config['allowed_types'] = 'xlsx|xls';
+	            $config['remove_spaces'] = TRUE;
+	            $this->upload->initialize($config);
+	            $this->load->library('upload', $config);
+	            if (!$this->upload->do_upload('userfile')) {
+	                $error = array('error' => $this->upload->display_errors());
+	            } else {
+	                $data = array('upload_data' => $this->upload->data());
+	            }
+	            
+	            if (!empty($data['upload_data']['file_name'])) {
+	                $import_xls_file = $data['upload_data']['file_name'];
+	            } else {
+	                $import_xls_file = 0;
+	            }
+	            $inputFileName = $path . $import_xls_file;
+	            try {
+	                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+	                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+	                $objPHPExcel = $objReader->load($inputFileName);
+	            } catch (Exception $e) {
+	                die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+	                        . '": ' . $e->getMessage());
+	            }
+	            $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+	            
+	            $arrayCount = count($allDataInSheet);
+	            $flag = 0;
+	            $createArray = array('First_Name', 'Last_Name', 'Email', 'DOB', 'Contact_NO');
+	            $makeArray = array('First_Name' => 'First_Name', 'Last_Name' => 'Last_Name', 'Email' => 'Email', 'DOB' => 'DOB', 'Contact_NO' => 'Contact_NO');
+	            $SheetDataKey = array();
+	            foreach ($allDataInSheet as $dataInSheet) {
+	                foreach ($dataInSheet as $key => $value) {
+	                    if (in_array(trim($value), $createArray)) {
+	                        $value = preg_replace('/\s+/', '', $value);
+	                        $SheetDataKey[trim($value)] = $key;
+	                    } else {
+	                        
+	                    }
+	                }
+	            }
+	            $data = array_diff_key($makeArray, $SheetDataKey);
+	           
+	            if (empty($data)) {
+	                $flag = 1;
+	            }
+	            if ($flag == 1) {
+	                for ($i = 2; $i <= $arrayCount; $i++) {
+	                    $addresses = array();
+	                    $firstName = $SheetDataKey['First_Name'];
+	                    $lastName = $SheetDataKey['Last_Name'];
+	                    $email = $SheetDataKey['Email'];
+	                    $dob = $SheetDataKey['DOB'];
+	                    $contactNo = $SheetDataKey['Contact_NO'];
+	                    $firstName = filter_var(trim($allDataInSheet[$i][$firstName]), FILTER_SANITIZE_STRING);
+	                    $lastName = filter_var(trim($allDataInSheet[$i][$lastName]), FILTER_SANITIZE_STRING);
+	                    $email = filter_var(trim($allDataInSheet[$i][$email]), FILTER_SANITIZE_EMAIL);
+	                    $dob = filter_var(trim($allDataInSheet[$i][$dob]), FILTER_SANITIZE_STRING);
+	                    $contactNo = filter_var(trim($allDataInSheet[$i][$contactNo]), FILTER_SANITIZE_STRING);
+	                    $fetchData[] = array('first_name' => $firstName, 'last_name' => $lastName, 'email' => $email, 'dob' => $dob, 'contact_no' => $contactNo);
+	                }              
+	                $data['employeeInfo'] = $fetchData;
+	                $this->import->setBatchImport($fetchData);
+	                $this->import->importData();
+            } else {
+                echo "Please import correct file";
+            }
+        	}
+		}
 
 	}

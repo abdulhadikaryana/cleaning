@@ -16,7 +16,7 @@
 			// $this->db->limit($limit);
 			//$this->db->where('id', $id);
 			// $query = $this->db->get("peserta");
-			$query=$this->db->query("SELECT * FROM pencatatanprimary where DelCatatPrim = 'accepted' ORDER BY Ocupation ASC limit $id,$limit ");
+			$query=$this->db->query("SELECT * FROM pencatatanprimary where Status = 'accepted' ORDER BY Provinsi ASC limit $id,$limit ");
 			
 			if ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
@@ -29,8 +29,8 @@
 		}
 
 		public function get_objek_detail($id){
-			$query = $this->db->query("SELECT IdCatatPrim, TahunCatat, NamePrim, Ocupation, Identification, DomainCatat, CategoryCatat, Kota, OPK 
-				from pencatatanprimary where IdCatatPrim = '$id'");
+			$query = $this->db->query("SELECT ID, TahunCatat, Name, Deskripsi, Provinsi, DOMAIN, CategoryCatat, Kota, OPK 
+				from pencatatanprimary where ID = '$id'");
 			return $query;
 		}
 
@@ -40,11 +40,11 @@
 		}
 		
 		public function edit($id,$opk_edit,$deskripsi,$kota_edit){
-			$query = $this->db->query("UPDATE pencatatanprimary set OPK = '$opk_edit', Kota = '$kota_edit', Identification = '$deskripsi' where IdCatatPrim='$id'");
+			$query = $this->db->query("UPDATE pencatatanprimary set OPK = '$opk_edit', Kota = '$kota_edit', Deskripsi = '$deskripsi' where IdCatatPrim='$id'");
 		}
 
 		public function softdelete($id){
-			$query = $this->db->query("UPDATE pencatatanprimary set DelCatatPrim='deleted' where IdCatatPrim='$id'");
+			$query = $this->db->query("UPDATE pencatatanprimary set Status='deleted' where ID='$id'");
 		}
 
 		public function searchpeserta($nama){
@@ -60,29 +60,32 @@
 		}
 
 		public function gettotalfull(){
-			$query = $this->db->query(" SELECT COUNT(IdCatatPrim) from pencatatanprimary where Kota IS NOT NULL AND OPK IS NOT NULL");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL AND OPK IS NOT NULL");
 			
 			return $query;
 		}
 		public function gettotalkota(){
-			$query = $this->db->query(" SELECT COUNT(IdCatatPrim) from pencatatanprimary where Kota IS NOT NULL ");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL ");
 			
 			return $query;
 		}
 		public function gettotalopk(){
-			$query = $this->db->query(" SELECT COUNT(IdCatatPrim) from pencatatanprimary where OPK IS NOT NULL ");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where OPK IS NOT NULL ");
 			
 			return $query;
 		}
 		public function getcountduplikat(){
-			$query = $this->db->query(" SELECT NamePrim FROM pencatatanprimary GROUP BY NamePrim HAVING COUNT(NamePrim) >1 ");
+			$query = $this->db->query(" SELECT Name FROM pencatatanprimary GROUP BY Name HAVING COUNT(Name) >1 ");
 			
 			return $query->num_rows();
 		}
+		public function getProvinsi(){
+			return $this->db->query("SELECT DISTINCT PROVINSI from wilayah ORDER BY PROVINSI ASC");
+		}
 		public function getduplikat(){
-			$query = $this->db->query("SELECT distinct a.IdCatatPrim, a.TahunCatat,a.DomainCatat,a.CategoryCatat, a.NamePrim, a.Ocupation, a.Kota, a.OPK, a.Identification 
-				FROM pencatatanprimary a INNER JOIN pencatatanprimary b ON a.NamePrim = b.NamePrim 
-				WHERE a.IdCatatPrim <> b.IdCatatPrim ORDER by NamePrim ASC");
+			$query = $this->db->query("SELECT distinct a.ID, a.TahunCatat,a.DOMAIN,a.CategoryCatat, a.Name, a.Provinsi, a.Kota, a.OPK, a.Deskripsi 
+				FROM pencatatanprimary a INNER JOIN pencatatanprimary b ON a.Name = b.Name
+				WHERE a.ID <> b.ID ORDER by Name ASC");
 			 
 			if ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
