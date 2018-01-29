@@ -7,7 +7,7 @@
 			$this->load->model('M_Admin');
 			$this->load->library('pagination');
 			// self::$order_element="ASC";
-			// self::$orderby="IdCatatPrim";
+			// self::$orderby="ID";
 			
 		}
 		public function index(){
@@ -17,9 +17,9 @@
 		}
 		function tes(){
 			if ($this->session->has_userdata('orderby')) {
-					$this->session->set_userdata('orderby','IdCatatPrim');
+					$this->session->set_userdata('orderby','ID');
 				}else{
-					$this->session->set_userdata('orderby','Ocupation');
+					$this->session->set_userdata('orderby','Provinsi');
 				} 
 			echo $this->order_element;
 		}
@@ -27,7 +27,7 @@
 					
 				// if (empty($this->input->post("columnName"))) {
 				// 	$order_db = "ASC";
-				// 	$orderby = "IdCatatPrim";
+				// 	$orderby = "ID";
 				// } else {
 				// 	$order_db = $this->input->post("sort");
 				// 	$orderby = $this->input->post("columnName");
@@ -192,7 +192,7 @@
 			
 		}
 		public function sort(){
-			$this->session->set_userdata('orderby','IdCatatPrim');
+			$this->session->set_userdata('orderby','ID');
 			$order = $this->uri->segment(3);
 			if ($order=="ASC") {
 				self::$order_element= "DESC";
