@@ -80,9 +80,9 @@
                         <li>
                             <a href="<?php echo base_url().'C_Admin/duplikat';?>"><i class="fa fa-clipboard fa-fw"></i> Duplikat</a>
                         </li>
-                        <li>
+                       <!--  <li>
                             <a href="<?php echo base_url().'C_Admin/upload';?>"><i class="fa fa-clipboard fa-fw"></i> Upload</a>
-                        </li>
+                        </li> -->
                         
                     </ul>
 
