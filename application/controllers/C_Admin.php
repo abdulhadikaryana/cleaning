@@ -150,15 +150,25 @@
 		}
 
 		public function editProvinsi(){
-			$check_kota="<select name="."\"provinsi\"".">";
+			$check_kota="<select id="."\"provinsi_name\"" ." name="."\"provinsi_name\"".">";
 			
-			$kota=$this->M_Admin->getProvinsi();
-			foreach ($kota->result_array() as $key) {
+			$provinsi=$this->M_Admin->getProvinsi();
+			foreach ($provinsi->result_array() as $key) {
 				$check_kota=$check_kota."<option  value=".$key['PROVINSI'].">".$key['PROVINSI']."</option>";
 			}
 			$check_kota=$check_kota."</select>";
 			echo $check_kota;
 			// return $check_kota;
+		}
+
+		public function editKota(){
+			$kota_list='';
+			$provinsi = $this->input->post('provinsi');
+			$kota_content = $this->M_Admin->getkota($provinsi);
+			foreach ($kota_content as $key) {
+				$kota_list=$kota_list."<input type=\"checkbox\" value=\"".$key['wilayah']."name=\"Kota[]\">";
+			}
+			echo $provinsi;
 		}
 
 		public function edit(){
@@ -187,6 +197,7 @@
 				echo $kota_edit;
 			}
 			$deskripsi = $this->input->post('deskripsi');
+			$deskripsi = addslashes($deskripsi);
 			$this->M_Admin->edit($id,$opk_edit,$deskripsi,$kota_edit);
 			redirect(base_url().'C_Admin/detail/'.$id,'refresh');
 			

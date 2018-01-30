@@ -83,7 +83,7 @@
 			return $this->db->query("SELECT DISTINCT PROVINSI from wilayah ORDER BY PROVINSI ASC");
 		}
 		public function getduplikat(){
-			$query = $this->db->query("SELECT distinct a.ID, a.TahunCatat,a.DOMAIN,a.CategoryCatat, a.Name, a.Provinsi, a.Kota, a.OPK, a.Deskripsi 
+			$query = $this->db->query("SELECT  a.ID, a.TahunCatat,a.DOMAIN,a.CategoryCatat, a.Name, a.Provinsi, a.Kota, a.OPK, a.Deskripsi 
 				FROM pencatatanprimary a INNER JOIN pencatatanprimary b ON a.Name = b.Name
 				WHERE a.ID <> b.ID ORDER by Name ASC");
 			 

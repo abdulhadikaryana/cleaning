@@ -26,16 +26,17 @@
             </div>
             <div class = "row">
                 <form>
-                    <!--  <div class="col-xs-4 form-group">
+                     <div class="col-xs-4 form-group">
+                        <label>Keyword</label>
                         <input type="text" name="keyword" class="form-control">
-                    </div> -->
-                    <!-- <div class="col-xs-4 form-group">
+                    </div>
+                    <div class="col-xs-4 form-group">
                         <label>Kategori Search<br></label>
                         <select class="form-control" name="kategori">
                             <option value="provinsi">Provinsi</option>
                             <option value="name">Nama</option>
                         </select>
-                    </div> -->
+                    </div>
                 </form> 
             </div>
             
