@@ -61,22 +61,22 @@
 		}
 
 		public function gettotalfull(){
-			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL AND  KOTA !='' and OPK!='' and OPK IS NOT NULL");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL AND  KOTA !='' and OPK!='' and OPK IS NOT NULL and Status = 'accepted'");
 			
 			return $query;
 		}
 		public function gettotalkota(){
-			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL and Kota !='' ");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL and Kota !='' and Status = 'accepted' ");
 			
 			return $query;
 		}
 		public function gettotalopk(){
-			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where OPK IS NOT NULL and OPK !='' ");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where OPK IS NOT NULL and OPK !='' and Status = 'accepted' ");
 			
 			return $query;
 		}
 		public function getcountduplikat(){
-			$query = $this->db->query(" SELECT Name FROM pencatatanprimary GROUP BY Name HAVING COUNT(Name) >1 ");
+			$query = $this->db->query(" SELECT Name FROM pencatatanprimary where Status = 'accepted' GROUP BY Name HAVING COUNT(Name) >1 ");
 			
 			return $query->num_rows();
 		}
