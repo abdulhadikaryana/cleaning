@@ -61,7 +61,7 @@
 		}
 
 		public function gettotalfull(){
-			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL AND  KOTA !='' and OPK!='' OPK IS NOT NULL");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL AND  KOTA !='' and OPK!='' and OPK IS NOT NULL");
 			
 			return $query;
 		}
