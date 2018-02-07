@@ -197,7 +197,7 @@
 				echo $kota_edit;
 			}
 			$deskripsi = $this->input->post('deskripsi');
-			$deskripsi = addslashes($deskripsi);
+			$deskripsi = addslashes($deskripsi);	
 			$this->M_Admin->edit($id,$opk_edit,$deskripsi,$kota_edit);
 			redirect(base_url().'C_Admin/detail/'.$id,'refresh');
 			

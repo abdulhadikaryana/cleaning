@@ -8,7 +8,8 @@
 		}
 		// Count all record of table "contact_info" in database.
 		public function getcountpeserta() {
-			return $this->db->count_all("pencatatanprimary");
+			//return $this->db->count_all("pencatatanprimary");
+			return $this->db->where('Status','accepted')->from("pencatatanprimary")->count_all_results();
 		}
 
 		// Fetch data according to per_page limit.
@@ -60,17 +61,17 @@
 		}
 
 		public function gettotalfull(){
-			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL AND OPK IS NOT NULL");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL AND AND KOTA !='' and OPK!='' OPK IS NOT NULL");
 			
 			return $query;
 		}
 		public function gettotalkota(){
-			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL ");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where Kota IS NOT NULL and Kota !='' ");
 			
 			return $query;
 		}
 		public function gettotalopk(){
-			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where OPK IS NOT NULL ");
+			$query = $this->db->query(" SELECT COUNT(ID) from pencatatanprimary where OPK IS NOT NULL and OPK !='' ");
 			
 			return $query;
 		}
