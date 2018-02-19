@@ -103,4 +103,8 @@
 			}
 			return false;
 		}
+
+		public function search($keyword,$provinsi){
+			return $this->db->query("SELECT * from '$keyword' where Name = '$keyword'");
+		}
 	}

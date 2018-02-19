@@ -25,7 +25,7 @@
                 
             </div>
             <div class = "row">
-                <form>
+                <form id="search" name="search" action="<?=site_url('C_Admin/search'); ?>" method="post" >
                      <div class="col-xs-4 form-group">
                         <label>Keyword</label>
                         <input type="text" name="keyword" class="form-control">
@@ -33,9 +33,13 @@
                     <div class="col-xs-4 form-group">
                         <label>Kategori Search<br></label>
                         <select class="form-control" name="kategori">
-                            <option value="provinsi">Provinsi</option>
-                            <option value="name">Nama</option>
+                            <option value="Provinsi">Provinsi</option>
+                            <option value="Name">Nama</option>
                         </select>
+                    </div>
+                    <div class="col-xs-4 form-group">
+                        <label>   </label>
+                        <button type="submit" name ="submit" value="submit" class="btn btn-success btn-default">Search</button>
                     </div>
                 </form> 
             </div>
@@ -61,6 +65,7 @@
                                <th>Provinsi</th>
                                 <th>Kota</th>
                                 <th>OPK</th>
+                                <th>Sumber</th>
                                 <th>Action</th>
                                 
                             </tr>
@@ -91,6 +96,9 @@
                                             }
                                             
                                         ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $row->sumber_data; ?>
                                     </td>
                                     <td> 
                                         <a href="<?php echo base_url().'C_Admin/detail/'.$row->ID.'/'.$page;?>"><i class="fa fa-eye fa-fw"></i></a>

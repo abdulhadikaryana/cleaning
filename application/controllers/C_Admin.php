@@ -109,6 +109,13 @@
 
 		}
 
+		public function search(){
+			$kategori = $this->input->post("kategori");
+			$keyword = $this->input->post("keyword");
+			$search_data = $this->M_Admin->search($keyword,$kategori);
+			
+		}
+
 		public function detailduplikat(){
 			$id=$this->uri->segment(3);
 			$page = $this->uri->segment(4);
