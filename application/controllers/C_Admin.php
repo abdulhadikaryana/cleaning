@@ -152,6 +152,7 @@
 		public function detailtetap(){
 			$id=$this->uri->segment(3);
 			$page = $this->uri->segment(4);
+			$data_objek['page'] = $page;
 			$data_objek['objek_detail'] = $this->M_Admin->get_objektetap_detail($id);
 			foreach ($data_objek['objek_detail'] ->result_array() as $key ) {
 				$data_objek['provinsi'] = $key['ProvTetap'];
