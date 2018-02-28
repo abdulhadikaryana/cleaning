@@ -308,7 +308,7 @@
 			$deskripsi = $this->input->post('deskripsi');
 			$deskripsi = addslashes($deskripsi);	
 			$this->M_Admin->edit_tetap($id,$opk_edit,$deskripsi,$kota_edit);
-			redirect(base_url().'C_Admin/detailtetap/'.$id."/".$page,'refresh');
+			redirect(base_url().'C_Admin/tetap/'.$page,'refresh');
 			
 		}
 		public function sort(){
