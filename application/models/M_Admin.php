@@ -14,7 +14,7 @@
 
 		public function getcountpenetapan() {
 			//return $this->db->count_all("pencatatanprimary");
-			return $this->db->where('status','accepted')->from("penetapanprimary")->count_all_results();
+			return $this->db->where('Status','accepted')->from("penetapanprimary")->count_all_results();
 		}
 
 		// Fetch data according to per_page limit.
