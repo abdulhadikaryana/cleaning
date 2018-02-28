@@ -101,7 +101,7 @@
                             </div>
                             <form id="edit" name="edit" action="<?=site_url('C_Admin/edittetap'); ?>" method="post">
                                 <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
-                                <input type="hidden" id="page" name="page" value="<? echo $page;?>">
+                                <input type="hidden" id="page" name="page" value="<?php echo $page;?>">
                                 <div class="row form-group">
                                     <textarea class="form-control resizable" rows="7"  name="deskripsi" form="edit"><?php echo addslashes($Deskripsi);?></textarea>
                                 </div>
