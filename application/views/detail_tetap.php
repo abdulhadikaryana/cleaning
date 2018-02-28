@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form id="edit" name="edit" action="<?=site_url('C_Admin/edit'); ?>" method="post">
+                            <form id="edit" name="edit" action="<?=site_url('C_Admin/edittetap'); ?>" method="post">
                                 <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
                                 <div class="row form-group">
                                     <textarea class="form-control resizable" rows="7"  name="deskripsi" form="edit"><?php echo addslashes($Deskripsi);?></textarea>
