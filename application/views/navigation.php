@@ -72,13 +72,16 @@
                             
                         </li> -->
                         <li>
-                            <a href="<?php echo base_url().'C_Admin/admin';?>"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                            <a href="<?php echo base_url().'C_Admin/admin';?>"><i class="fa fa-dashboard fa-fw"></i> Pencatatan</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url().'C_Admin/rekap';?>"><i class="fa fa-book fa-fw"></i> Rekap</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url().'C_Admin/duplikat';?>"><i class="fa fa-clipboard fa-fw"></i> Duplikat</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url().'C_Admin/tetap';?>"><i class="fa fa-clipboard fa-fw"></i> Penetapan</a>
                         </li>
                        <!--  <li>
                             <a href="<?php echo base_url().'C_Admin/upload';?>"><i class="fa fa-clipboard fa-fw"></i> Upload</a>
