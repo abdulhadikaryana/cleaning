@@ -12,6 +12,11 @@
 			return $this->db->where('Status','accepted')->from("pencatatanprimary")->count_all_results();
 		}
 
+		public function getcountpenetapan() {
+			//return $this->db->count_all("pencatatanprimary");
+			return $this->db->where('status','accepted')->from("penetapanprimary")->count_all_results();
+		}
+
 		// Fetch data according to per_page limit.
 		public function getallpeserta($limit, $id) {
 			// $this->db->limit($limit);
@@ -29,9 +34,31 @@
 			return false;
 		}
 
+		public function getpenetapan($limit, $id) {
+			// $this->db->limit($limit);
+			//$this->db->where('id', $id);
+			// $query = $this->db->get("peserta");
+			$query=$this->db->query("SELECT * FROM penetapanprimary where status = 'accepted' ORDER BY ProvTetap ASC limit $id,$limit ");
+			
+			if ($query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+			$data[] = $row;
+			}
+
+			return $data;
+			}
+			return false;
+		}
+
 		public function get_objek_detail($id){
 			$query = $this->db->query("SELECT ID, TahunCatat, Name, Deskripsi, Provinsi, DOMAIN, CategoryCatat, Kota, OPK 
 				from pencatatanprimary where ID = '$id'");
+			return $query;
+		}
+
+		public function get_objektetap_detail($id){
+			$query = $this->db->query("SELECT *
+				from penetapanprimary where ID = '$id'");
 			return $query;
 		}
 
@@ -41,6 +68,10 @@
 		}
 		
 		public function edit($id,$opk_edit,$deskripsi,$kota_edit){
+			$query = $this->db->query("UPDATE pencatatanprimary set OPK = '$opk_edit', Kota = '$kota_edit', Deskripsi = '$deskripsi' where ID='$id'");
+		}
+
+		public function edit_tetap($id,$opk_edit,$deskripsi,$kota_edit){
 			$query = $this->db->query("UPDATE pencatatanprimary set OPK = '$opk_edit', Kota = '$kota_edit', Deskripsi = '$deskripsi' where ID='$id'");
 		}
 
