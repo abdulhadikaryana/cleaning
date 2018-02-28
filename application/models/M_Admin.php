@@ -38,7 +38,7 @@
 			// $this->db->limit($limit);
 			//$this->db->where('id', $id);
 			// $query = $this->db->get("peserta");
-			$query=$this->db->query("SELECT * FROM penetapanprimary where status = 'accepted' ORDER BY ProvTetap ASC limit $id,$limit ");
+			$query=$this->db->query("SELECT * FROM penetapanprimary where Status = 'accepted' ORDER BY ProvTetap ASC limit $id,$limit ");
 			
 			if ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
