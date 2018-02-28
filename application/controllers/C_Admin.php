@@ -154,12 +154,12 @@
 			$page = $this->uri->segment(4);
 			$data_objek['objek_detail'] = $this->M_Admin->get_objektetap_detail($id);
 			foreach ($data_objek['objek_detail'] ->result_array() as $key ) {
-				$data_objek['provinsi'] = $key['Provinsi'];
-				$data_objek['Nama'] = $key['Name'];
+				$data_objek['provinsi'] = $key['ProvTetap'];
+				$data_objek['Nama'] = $key['PublicName'];
 				$data_objek['Deskripsi'] = $key['Deskripsi'];
-				$data_objek['tahun'] = $key['TahunCatat'];
-				$data_objek['domain'] = $key['DOMAIN'];
-				$data_objek['kategori'] = $key['CategoryCatat'];
+				$data_objek['tahun'] = $key['TahunTetap'];
+				$data_objek['domain'] = $key['DomainTetap'];
+				$data_objek['kategori'] = $key['CategoryTetap'];
 				$data_objek['OPK'] = $key['OPK'];
 				$data_objek['kota'] = $key['Kota'];
 				$data_objek['id'] = $key['ID'];
@@ -173,7 +173,7 @@
 								);
                 $data_objek['breadcrumb'] = $breadcrumb;
  
-			$this->load->view('detail', $data_objek);
+			$this->load->view('detail_tetap', $data_objek);
 
 		}
 
