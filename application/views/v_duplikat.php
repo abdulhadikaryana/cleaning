@@ -57,8 +57,9 @@
                                 <th>ID</th>
                                 <th>Nama</th>
                                 <th>Provinsi</th>
-                                <th>Kota</th>
-                                <th>OPK</th>
+                                <th>Deskripsi</th>
+                                <!-- <th>Kota</th>
+                                <th>OPK</th> -->
                                 <th>Action</th>
                                 
                             </tr>
@@ -70,7 +71,7 @@
                                     <td><?php echo $row->ID;?></td>
                                     <td><?php echo $row->Name;?></td>
                                     <td><?php echo $row->Provinsi;?></td>
-                                    <td>
+                                    <!-- <td>
                                         <?php 
                                             if (is_null( $row->Kota)) {
                                                 ?><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><?php
@@ -89,7 +90,8 @@
                                             }
                                             
                                         ?>
-                                    </td>
+                                    </td> -->
+                                    <td><?php echo $row->Deskripsi;?></td>
                                     <td> 
                                         <a href="<?php echo base_url().'C_Admin/detailduplikat/'.$row->ID;?>"><i class="fa fa-eye fa-fw"></i></a>
                                         <a href="<?php echo base_url().'C_Admin/del/'.$row->ID;?>"><i class="fa fa-remove fa-fw"></i> </a>
