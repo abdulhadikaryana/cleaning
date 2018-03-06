@@ -364,10 +364,5 @@
 			$this->load->view('v_upload');
 		}
 		
-		public function uploadfile(){
-			
-		}
-
-		
 
 	}

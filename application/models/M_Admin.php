@@ -55,6 +55,38 @@
 			return false;
 		}
 
+		public function penetapan_read() {
+			// $this->db->limit($limit);
+			//$this->db->where('id', $id);
+			// $query = $this->db->get("peserta");
+			$query=$this->db->query("SELECT ID,PublicName,TahunTetap,ProvTetap,OPK,Kota,Deskripsi from penetapanprimary where (OPK IS NOT NULL AND OPK !='') and Status = 'accepted' ORDER BY ProvTetap ASC  ");
+			
+			if ($query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+			$data[] = $row;
+			}
+
+			return $data;
+			}
+			return false;
+		}
+
+		public function pencatatan_read() {
+			// $this->db->limit($limit);
+			//$this->db->where('id', $id);
+			// $query = $this->db->get("peserta");
+			$query=$this->db->query("SELECT ID,Name,TahunCatat,Provinsi,OPK,Kota,Deskripsi from pencatatanprimary where (OPK IS NOT NULL AND OPK !='') and Status = 'accepted' ORDER BY Provinsi ASC  ");
+			
+			if ($query->num_rows() > 0) {
+			foreach ($query->result() as $row) {
+			$data[] = $row;
+			}
+
+			return $data;
+			}
+			return false;
+		}
+
 		public function get_objek_detail($id){
 			$query = $this->db->query("SELECT ID, TahunCatat, Name, Deskripsi, Provinsi, DOMAIN, CategoryCatat, Kota, OPK 
 				from pencatatanprimary where ID = '$id'");
