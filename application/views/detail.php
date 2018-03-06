@@ -119,7 +119,7 @@
                                                         ?>
                                                         <?php
                                                             foreach ($kosong ->result_array() as $key ) {
-                                                                ?><input class="wrap" type="checkbox" name="kota[]" value="<?php echo $key['WILAYAH'];?>"><?php echo $key['WILAYAH'];?><br>
+                                                                ?><label><input class="wrap" type="checkbox" name="kota[]" value="<?php echo $key['WILAYAH'];?>"><?php echo $key['WILAYAH'];?></label><br>
 
                                                                 <?php
 
