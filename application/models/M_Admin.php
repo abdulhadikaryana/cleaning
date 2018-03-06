@@ -9,7 +9,12 @@
 		// Count all record of table "contact_info" in database.
 		public function getcountpeserta() {
 			//return $this->db->count_all("pencatatanprimary");
-			return $this->db->where('Status','accepted')->from("pencatatanprimary")->count_all_results();
+			// return $this->db->where('Status','accepted')->from("pencatatanprimary")->count_all_results();
+			$row = $this->db->query("SELECT count(*) from pencatatanprimary where (OPK IS NULL or OPK ='') and Status = 'accepted' ");
+			foreach ($row ->result_array() as $key ) {
+				$row=$key['count(*)'];	 
+			}
+			return $row;
 		}
 
 		public function getcountpenetapan() {
@@ -22,7 +27,7 @@
 			// $this->db->limit($limit);
 			//$this->db->where('id', $id);
 			// $query = $this->db->get("peserta");
-			$query=$this->db->query("SELECT * FROM pencatatanprimary where Status = 'accepted' ORDER BY Provinsi ASC limit $id,$limit ");
+			$query=$this->db->query("SELECT * from pencatatanprimary where (OPK IS NULL or OPK ='') and Status = 'accepted' ORDER BY Provinsi ASC limit $id,$limit ");
 			
 			if ($query->num_rows() > 0) {
 			foreach ($query->result() as $row) {
