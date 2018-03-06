@@ -324,8 +324,6 @@
 			
 		}
 
-
-
 		public function getcount(){
 			$countpeserta = $this->M_Admin->getcountpeserta();
 			return $countpeserta;
@@ -357,12 +355,5 @@
 			$this->load->view('navigation');
 			$this->load->view('v_rekap', $data);
 		}
-
-
-		function upload(){
-			$this->load->view('navigation');
-			$this->load->view('v_upload');
-		}
-		
 
 	}
